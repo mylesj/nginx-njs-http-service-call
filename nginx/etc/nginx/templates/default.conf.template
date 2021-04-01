@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name _;
+
+    location / {
+        default_type text/plain;
+        return 200;
+    }
+
+    location /test {
+        js_content http.testServiceCall;
+    }
+
+    location /internal/node-service {
+        internal;
+        rewrite /internal/node-service/(.*) /$1 break;
+        proxy_pass http://${NODE_SERVICE}:${NODE_SERVICE_PORT};
+    }
+}
