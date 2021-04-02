@@ -1,7 +1,7 @@
 # nginx-njs-internal-service-call
 
-An experiment to evaluate how `njs` request handlers can interact with API
-outwith their own context.
+An example evaluating how njs request handlers can interact with API outwith 
+their own context.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ internal route which an `njs` module can call, that reverse-proxies the
 web service. Note that:
 
 -   `njs` cannot make remote requests, only local sub-requests
-    (local routes can still proxy remote services however)
+    (local routes can still proxy remote services)
 -   the `internal` directive can be used inside a `location` block to signal
     that it not be exposed externally
 -   `subrequest()` does not understand `@named` routes
