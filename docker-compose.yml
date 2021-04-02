@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.9'
 
 x-env: &global-env
     NODE_SERVICE: &node-service node_service
@@ -9,7 +9,6 @@ services:
         image: nginx:1.19.9
         container_name: nginx_server
         environment: *global-env
-
         volumes:
             - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./nginx/etc/nginx/templates:/etc/nginx/templates
