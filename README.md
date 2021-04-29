@@ -1,7 +1,6 @@
-# nginx-njs-internal-service-call
+# nginx-njs-http-service-call
 
-An example evaluating how njs request handlers can interact with API outwith 
-their own context.
+An example demonstrating how njs request handlers can interact with external services.
 
 ## Prerequisites
 
@@ -19,14 +18,15 @@ PORT=80 docker-compose up
 
 ## Overview
 
-This project consists of two containers, a client-facing `nginx` server and
-an internal `node` "ping-pong" service. The aim was to assess how `njs` can
-reliably integrate with other system components. This solutions defines an
-internal route which an `njs` module can call, that reverse-proxies the
-web service. Note that:
+This project consists of two containers, a client-facing `nginx` server and 
+a `node` "ping-pong" service. The aim was to assess how `njs` can reliably 
+integrate with other system components. This solution defines an internal 
+route which an `njs` module can call, that reverse-proxies a web service. 
+Note that:
 
--   `njs` cannot make remote requests, only local sub-requests
-    (local routes can still proxy remote services)
--   the `internal` directive can be used inside a `location` block to signal
-    that it not be exposed externally
+-   `njs` cannot make arbitrary http requests itself, only locally defined 
+    sub-requests
+-   the `internal` directive can be used inside a `location` block to 
+    signal that it not be exposed publicly
 -   `subrequest()` does not understand `@named` routes
+
